@@ -6,16 +6,23 @@ package ecuacionlineal;
 
 import jade.core.behaviours.OneShotBehaviour;
 
+
 /**
  *
  * @author luis
  */
 public class OneShotSLR extends OneShotBehaviour{
+    private float numeroAPredecir;
+    public OneShotSLR(float _numeroAPredecir){
+        numeroAPredecir = _numeroAPredecir;
+    }
     @Override
     public void action() {
-        SLRECUATION ecuacion = new SLRECUATION();
-        ecuacion.setLinearEcuation();
-        System.out.println(ecuacion.to_String());
-    }
+        SLRECUATION prediccion = new SLRECUATION(numeroAPredecir);
+        System.out.println(prediccion.toString());      
+} 
     
 }
+    
+    
+

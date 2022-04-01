@@ -14,6 +14,12 @@ public class AgenteLineal extends Agent {
     @Override
     protected void setup() {
     System.out.println("Hola, soy "+getAID().getName()+" y he iniciado");
-    addBehaviour(new OneShotSLR());
+    Object[] args = getArguments();
+    if (args != null && args.length > 0) {
+        addBehaviour(new OneShotSLR(Float.parseFloat(String.valueOf(args[0]))));
     }
+    else {
+        doDelete();
+    }
+}
 }

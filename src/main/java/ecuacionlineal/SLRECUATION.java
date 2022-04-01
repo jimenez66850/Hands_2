@@ -14,12 +14,15 @@ import javax.swing.JOptionPane;
 public class SLRECUATION {
     private ArrayList<Float> xValues;
     private ArrayList<Float> yValues;
-    private float mediaX,mediaY,pendiente,interseccion;
-    public SLRECUATION(){
+    private float mediaX,mediaY,pendiente,interseccion,prediccion,numeroAPredecir;
+    public SLRECUATION(float numeroX){
         xValues = new ArrayList<>();
         yValues = new ArrayList<>();
         addXValues();
         addYValues();
+        setLinearEcuation();
+        setPrediction(numeroX);
+        numeroAPredecir = numeroX;
     }
     public void setLinearEcuation(){
         mediaX = calcularMedia(xValues);
@@ -27,12 +30,21 @@ public class SLRECUATION {
         pendiente = calcularPendiente();
         interseccion = calcularInterseccion();
     }
-    public String to_String(){
+    
+    @Override
+    public String toString(){
         if (pendiente<0)
-            return "\nMedia de X: " + String.valueOf(mediaX) +"\nMedia de Y: " + String.valueOf(mediaY)+ "\nEcuacion: Y = " + String.valueOf(interseccion)+ " "+ String.valueOf(pendiente)+"x\n";
+            return "\nMedia de X: " + String.valueOf(mediaX) +"\nMedia de Y: " + String.valueOf(mediaY)+ "\nEcuacion: Y = " + String.valueOf(interseccion)+ " "+ String.valueOf(pendiente)+"x\nResultados: [X-->Y] ["+String.valueOf(numeroAPredecir)+" -->"+String.valueOf(prediccion)+"]\n";
         else
-            return "\nMedia de X: " + String.valueOf(mediaX) +"\nMedia de Y: " + String.valueOf(mediaY)+ "\nEcuacion: Y = " + String.valueOf(interseccion)+ " + "+ String.valueOf(pendiente)+"x\n";
+            return "\nMedia de X: " + String.valueOf(mediaX) +"\nMedia de Y: " + String.valueOf(mediaY)+ "\nEcuacion: Y = " + String.valueOf(interseccion)+ " + "+ String.valueOf(pendiente)+"x\nResultados: [X-->Y] ["+String.valueOf(numeroAPredecir)+" -->"+String.valueOf(prediccion)+"]\n";
     }
+    public float getPrediction(){       
+        return prediccion;
+    }
+    public void setPrediction(float numeroX){
+        prediccion = interseccion + (pendiente * numeroX);
+    }
+    
     private void addXValues(){
         xValues.add((float)23.0);
         xValues.add((float)26.0);
